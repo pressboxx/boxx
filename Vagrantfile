@@ -254,8 +254,8 @@ Vagrant.configure(2) do |config|
 
     File.write('IP', "10.10.10.#{rand(10..250)}") if not File.exists?('IP')
 
-    config.vm.box = "pressboxx/pressboxx"
-    config.vm.hostname = "pressboxx.box"
+    config.vm.box = "pressboxx/vm"
+    config.vm.hostname = "pressboxx.local"
     config.hostsupdater.aliases = [
         "adminer.pressboxx.box",
         "mailhog.pressboxx.box"
