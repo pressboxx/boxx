@@ -257,8 +257,9 @@ Vagrant.configure(2) do |config|
     config.vm.box = "pressboxx/vm"
     config.vm.hostname = "pressboxx.local"
     config.hostsupdater.aliases = [
-        "adminer.pressboxx.box",
-        "mailhog.pressboxx.box"
+        "api.pressboxx.local"
+        "adminer.pressboxx.local",
+        "mailhog.pressboxx.local"
     ]
 
     config.vm.network 'private_network', ip: IO.read('IP').strip
