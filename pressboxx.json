@@ -1,6 +1,5 @@
 {
   "config": {},
-  "projects": {},
   "release": {
     "name": "hummingbird",
     "version": "1.0.0",
@@ -36,10 +35,10 @@
       },
       "mariadb": {
         "commands": {
-          "reload": "sudo service nginx reload",
-          "restart": "sudo service nginx restart",
-          "start": "sudo service nginx start",
-          "stop": "sudo service nginx stop"
+          "reload": "sudo service mysql reload",
+          "restart": "sudo service mysql restart",
+          "start": "sudo service mysql start",
+          "stop": "sudo service mysql stop"
         },
         "name": "MariaDB",
         "type": "service",
