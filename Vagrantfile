@@ -257,7 +257,7 @@ Vagrant.configure(2) do |config|
     config.vm.box = "pressboxx/vm"
     config.vm.hostname = "pressboxx.local"
     config.hostsupdater.aliases = [
-        "api.pressboxx.local"
+        "api.pressboxx.local",
         "adminer.pressboxx.local",
         "mailhog.pressboxx.local"
     ]
