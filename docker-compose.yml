@@ -16,6 +16,11 @@ services:
       - "3306:3306"
     volumes:
       - data:/var/lib/mysql
+  mailhog:
+    image: "mailhog/mailhog:latest"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
   php7-fpm:
     image: "chialab/php-dev:7.0-fpm" # this will almost undoubtedly need to be our own container
     ports:
@@ -26,6 +31,7 @@ services:
     depends_on:
       - cache
       - db
+      - mailhog
       - php7-fpm
     environment:
       MYSQL_HOST: db
