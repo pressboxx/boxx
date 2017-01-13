@@ -17,11 +17,11 @@ services:
     volumes:
       - data:/var/lib/mysql
   php7-fpm:
-    image: "chialab/php-dev:7.0-fpm"
+    image: "chialab/php-dev:7.0-fpm" # this will almost undoubtedly need to be our own container
     ports:
       - "9000:9000"
     volumes:
-      - ~/working/wordpress:/usr/share/nginx/html
+      - ~/working:/usr/share/nginx #this would be the projects directory from the pressboxx.json
   web:
     depends_on:
       - cache
@@ -36,7 +36,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./docker/projects:/etc/nginx/conf.d
-      - ~/working/wordpress:/usr/share/nginx/htmlvolumes:
+      - ./docker/projects:/etc/nginx/conf.d # the cli should add project virtual hosts to this directory
+      - ~/working:/usr/share/nginx #this would be the projects directory from the pressboxx.json
+volumes:
   data:
     driver: local
