@@ -15,7 +15,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /var/lib/mysql
+      - data:/var/lib/mysql
   php7-fpm:
     image: "chialab/php-dev:7.0-fpm"
     ports:
@@ -37,4 +37,6 @@ services:
       - "80:80"
     volumes:
       - ./docker/projects:/etc/nginx/conf.d
-      - ~/working/wordpress:/usr/share/nginx/html
+      - ~/working/wordpress:/usr/share/nginx/htmlvolumes:
+  data:
+    driver: local
