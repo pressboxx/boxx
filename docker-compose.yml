@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  cache:
+    image: "redis:3.0.7-alpine"
+    ports:
+      - "6379:6379"
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    image: "mariadb:10.1.20"
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+  php7-fpm:
+    image: "chialab/php-dev:7.0-fpm"
+    ports:
+      - "9000:9000"
+    volumes:
+      - ~/working/wordpress:/usr/share/nginx/html
+  web:
+    depends_on:
+      - cache
+      - db
+      - php7-fpm
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    image: "nginx:1.11.8"
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/projects:/etc/nginx/conf.d
+      - ~/working/wordpress:/usr/share/nginx/html
