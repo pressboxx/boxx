@@ -32,7 +32,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    image: "nginx:1.11.8"
+    image: "nginx:1.11.8-alpine"
     ports:
       - "80:80"
     volumes:
