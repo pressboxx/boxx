@@ -3,8 +3,6 @@ version: '2'
 services:
   cache:
     image: "redis:3.0.7-alpine"
-    ports:
-      - "6379:6379"
   db:
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -22,9 +20,9 @@ services:
       - "1025:1025"
       - "8025:8025"
   php7-fpm:
-    image: "chialab/php-dev:7.0-fpm" # this will almost undoubtedly need to be our own container
-    ports:
-      - "9000:9000"
+    depends_on:
+      - mailhog
+    image: "pressboxx/php7-fpm:0.0.2"
     volumes:
       - ~/working:/usr/share/nginx #this would be the projects directory from the pressboxx.json
   web:
